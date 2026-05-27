@@ -1,0 +1,26 @@
+title = "welbe-ai-stack secret scanning"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "local-env-assignment"
+description = "Environment-style secret assignment"
+regex = '''(?i)(api[_-]?key|secret|token|password|private[_-]?key)\s*=\s*['"]?[A-Za-z0-9_./+=:-]{12,}'''
+keywords = [
+  "api_key",
+  "apikey",
+  "password",
+  "private_key",
+  "secret",
+  "token",
+]
+
+[allowlist]
+description = "Allow docs-only placeholders"
+regexes = [
+  '''testcustomer@example\.com''',
+  '''example\.com''',
+  '''localhost''',
+  '''127\.0\.0\.1''',
+]
